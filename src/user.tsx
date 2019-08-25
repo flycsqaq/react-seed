@@ -19,8 +19,8 @@ export default () => {
     }, []);
     return (
         <div>
-            {user.map(item => (
-                <div>{item.name}</div>
+            {user.map((item, index) => (
+                <div key={index}>{item.name}</div>
             ))}
         </div>
     );

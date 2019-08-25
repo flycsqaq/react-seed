@@ -2,10 +2,8 @@
 
 import Axios from 'axios';
 
-const service = Axios.create({
-    baseURL: '124.45.778.12:45',
-});
+const service = Axios.create({});
 
 export const getUser = () => {
-    return service.get('/api/user');
+    return service.get('api/user');
 };

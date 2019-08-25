@@ -7,4 +7,4 @@ const res = () => {
     return user;
 };
 
-export default Mock.mock('124.45.778.12:45/api/user', 'get', res);
+export default Mock.mock('api/user', 'get', res);

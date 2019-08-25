@@ -3,8 +3,9 @@
 
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
-
 const {resolve} = require('./utils');
+
+const webpack = require('webpack')
 
 module.exports = merge(common, {
     entry: {
