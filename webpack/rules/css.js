@@ -1,17 +1,24 @@
 /** @format */
 /* eslint-disable */
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { resolve } = require('../utils');
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const minicss = {
+    loader: MiniCssExtractPlugin.loader,
+    options: {
+        sourceMap: true,
+    },
+};
 module.exports = [
     {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [minicss, 'css-loader'],
     },
     {
         test: /\.s(a|c)ss$/,
         use: [
-            MiniCssExtractPlugin.loader,
+            minicss,
             {
                 loader: 'typings-for-css-modules-loader',
                 options: {
@@ -26,6 +33,15 @@ module.exports = [
     },
     {
         test: /.less$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+        use: [
+            minicss,
+            'css-loader',
+            {
+                loader: 'less-loader',
+                options: {
+                    javascriptEnabled: true,
+                },
+            },
+        ],
     },
 ];

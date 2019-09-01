@@ -13,16 +13,17 @@
     "strict": true,
     "baseUrl": "./src/",
     "paths": {
-      "@pages/*": ["containers/*"],
+      "@pages/*": ["pages/*"],
       "@components/*": ["components/*"],
       "@assets/*": ["assets/*"],
       "@shared/*": ["shared/*"],
       "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"],
+      "@typings/*": ["typings/*"],
       "@service/*": ["service/*"],
       "@router/*": ["router/*"],
       "@store/*": ["store/*"],
-      "@/*": ["/*"]
+      "@constant/*": ["constant/*"],
+      "@/*": ["/*"],
     },
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
@@ -31,9 +32,5 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react"
-  },
-  "include": [
-    "./src/*",
-    "./mock/*"
-  ]
+  }
 }

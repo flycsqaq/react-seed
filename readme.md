@@ -24,3 +24,8 @@
 ## mock 
 
 ## jest
+
+## typeface-roboto
+output: {
+    public: '/'
+}

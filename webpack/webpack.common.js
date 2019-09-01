@@ -3,13 +3,14 @@
 
 const TsconfigPathsWebpackPlugin = require('tsconfig-paths-webpack-plugin');
 
-const {resolve} = require('./utils');
+const { resolve } = require('./utils');
 const rules = require('./rules/index');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+    .BundleAnalyzerPlugin;
 
 module.exports = {
     entry: {
@@ -19,6 +20,7 @@ module.exports = {
         path: resolve('dist'),
         chunkFilename: '[name].bundle.js',
         filename: 'js/[name].js',
+        publicPath: '/',
     },
     module: {
         rules: [...rules],
@@ -39,7 +41,7 @@ module.exports = {
             analyzerPort: 9999, // 运行后的端口号
             reportFilename: 'report.html',
             defaultSizes: 'parsed',
-            openAnalyzer: true,
+            openAnalyzer: false,
             generateStatsFile: false,
             statsFilename: 'stats.json',
             statsOptions: null,

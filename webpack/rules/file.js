@@ -8,7 +8,12 @@ module.exports = [
     },
     {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ['file-loader?name=font/[name].[hash:12].[ext]'],
+        use: {
+            loader: 'file-loader',
+            options: {
+                name: 'font/[name].[ext]',
+            }
+        }
     },
     {
         test: /\.(csv|tsv)$/,

@@ -6,7 +6,7 @@ module.exports = {
         browser: true,
         es6: true,
     },
-    extends: ['prettier/@typescript-eslint', 'plugin:prettier/recommended', 'eslint-config-alloy/typescript'],
+    extends: ['eslint-config-alloy/typescript', 'prettier/@typescript-eslint', 'plugin:prettier/recommended'],
     globals: {
         Atomics: 'readonly',
         SharedArrayBuffer: 'readonly',
@@ -22,6 +22,7 @@ module.exports = {
         '@typescript-eslint/no-object-literal-type-assertion': 0,
         '@typescript-eslint/no-triple-slash-reference': 0,
         '@typescript-eslint/prefer-interface': 0,
-        "object-curly-spacing": 0
+        "object-curly-spacing": 2,
+        "no-console": 2,
     },
 };
