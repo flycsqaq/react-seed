@@ -1,6 +1,11 @@
 /** @format */
-import { Types } from '@typings/types';
+import { Types } from '@typings/type';
 
+/**
+ * 判断两个对象是否相同
+ * @param leftObj
+ * @param rightObj
+ */
 export const isEqual = (leftObj: any, rightObj: any): boolean => {
     const leftType: Types = typeof leftObj;
     const rightType: Types = typeof rightObj;

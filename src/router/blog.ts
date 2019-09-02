@@ -3,20 +3,20 @@
 import { RouterModule } from '@typings/router';
 import { lazy } from 'react';
 
-const homeRouter: RouterModule = {
-    name: '主页',
-    key: 'home',
-    base: '/',
+const blogRouter: RouterModule = {
+    name: '博客',
+    base: '/blog',
+    key: 'blog',
     isShow: true,
     pages: [
         {
             name: 'home',
-            path: '',
             key: 'home',
-            component: lazy(() => import('../pages/home/index')),
+            path: '',
+            component: lazy(() => import('../pages/blog/index')),
             isShow: true,
         },
     ],
 };
 
-export default homeRouter;
+export default blogRouter;

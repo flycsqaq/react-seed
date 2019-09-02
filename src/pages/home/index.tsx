@@ -3,5 +3,5 @@
 import React from 'react';
 
 export default () => {
-    return <div>home</div>;
+    return <div>主页</div>;
 };

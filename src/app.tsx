@@ -9,7 +9,8 @@ import { Switch, HashRouter, Route, Redirect } from 'react-router-dom';
 import theme from './theme.json';
 import ProviderContainer from './store';
 import router from './router';
-import './app.css';
+import NavLayout from '@shared/nav';
+import 'typeface-roboto';
 
 const App = () => {
     return (
@@ -18,21 +19,23 @@ const App = () => {
             <ProviderContainer>
                 <HashRouter>
                     <Switch>
-                        <Suspense fallback={<div>loading...</div>}>
-                            <Switch>
-                                {router.map(item =>
-                                    item.pages.map(it => (
-                                        <Route
-                                            key={it.key}
-                                            exact
-                                            path={`${item.base}${it.path}`}
-                                            component={it.component}
-                                        />
-                                    )),
-                                )}
-                                <Redirect from={'**'} to={'/'} />
-                            </Switch>
-                        </Suspense>
+                        <NavLayout>
+                            <Suspense fallback={<div>loading...</div>}>
+                                <Switch>
+                                    {router.map(item =>
+                                        item.pages.map(it => (
+                                            <Route
+                                                key={it.key}
+                                                exact
+                                                path={it.path}
+                                                component={it.component}
+                                            />
+                                        )),
+                                    )}
+                                    <Redirect from={'**'} to={'/'} />
+                                </Switch>
+                            </Suspense>
+                        </NavLayout>
                     </Switch>
                 </HashRouter>
             </ProviderContainer>
