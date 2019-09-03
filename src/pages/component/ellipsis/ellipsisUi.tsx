@@ -37,7 +37,7 @@ export default ({ text = '', lines = 1, suffix = '...', Tooltip, ...restProps }:
                     <span>{str}</span>
                 </Tooltip>
             ) : (
-                <div title={text}>{str}</div>
+                <span title={text}>{str}</span>
             )}
         </div>
     );
