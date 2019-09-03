@@ -1,12 +1,13 @@
 /** @format */
 
 import React, { useEffect, useRef, useState, Dispatch, Fragment } from 'react';
-import { getLineHeight } from '@utils/cutString';
 
 interface EllipsisProps {
     text: string;
     lines: number;
     suffix?: string;
+    startCallback?: Function;
+    endCallback?: Function;
 }
 
 enum STATUS_TYPE {
@@ -20,17 +21,24 @@ type StatusFn = {
     [key in STATUS_TYPE]: () => void;
 };
 
-export default ({ text = '', lines = 1, suffix = '...' }: EllipsisProps) => {
+/**
+ * 如何便于测试?
+ */
+export default ({
+    text = '',
+    lines = 1,
+    suffix = '...',
+    startCallback = () => {},
+    endCallback = () => {},
+}: EllipsisProps) => {
     const [realLines, setRealLines]: [number, Dispatch<number>] = useState(0);
     const [lineHeight, setLineHeight]: [number, Dispatch<number>] = useState(20);
 
     const rootRef = useRef<HTMLDivElement>(null);
     const rootHeight = realLines * lineHeight;
 
-    const [displayStr, setDisplayStr]: [string, Dispatch<string>] = useState('');
-
-    const shadowRef = useRef<HTMLDivElement>(null);
-    const [shadowStr, setShadowStr]: [string, Dispatch<string>] = useState('');
+    const hiddenRef = useRef<HTMLDivElement>(null);
+    const [hiddenStr, setHiddenStr]: [string, Dispatch<string>] = useState('');
     const [stepSize, setStepSize]: [number, Dispatch<number>] = useState(0);
 
     const [status, setStatus]: [STATUS_TYPE, Dispatch<STATUS_TYPE>] = useState(STATUS_TYPE.START as STATUS_TYPE);
@@ -38,7 +46,10 @@ export default ({ text = '', lines = 1, suffix = '...' }: EllipsisProps) => {
     useEffect(() => {
         if (status !== STATUS_TYPE.START) {
             setStatus(STATUS_TYPE.START);
+            startCallback(true);
+            return;
         }
+        startCallback(false);
     }, [text, lines, suffix]);
 
     /**
@@ -48,13 +59,15 @@ export default ({ text = '', lines = 1, suffix = '...' }: EllipsisProps) => {
     const handleStart = () => {
         const realLine = lines > 0 ? lines : 0;
         if (realLine === 0) {
-            setShadowStr('');
+            setHiddenStr('');
             setStatus(STATUS_TYPE.END);
         } else {
-            setLineHeight(getLineHeight(rootRef.current as HTMLDivElement));
+            setLineHeight(
+                Number.parseInt(getComputedStyle(hiddenRef.current as HTMLDivElement).lineHeight as string, 10),
+            );
             setRealLines(realLine);
             setStepSize(0);
-            setShadowStr(text);
+            setHiddenStr(text);
             setStatus(STATUS_TYPE.MATCH);
         }
     };
@@ -64,13 +77,13 @@ export default ({ text = '', lines = 1, suffix = '...' }: EllipsisProps) => {
      *
      */
     const handleMatch = () => {
-        const matchHeight: number = (shadowRef.current as HTMLDivElement).offsetHeight;
+        const matchHeight: number = (hiddenRef.current as HTMLDivElement).offsetHeight;
         if (matchHeight <= rootHeight) {
             setRealLines(Math.ceil(matchHeight / lineHeight));
             setStatus(STATUS_TYPE.END);
         } else {
             const nextStr = `${text}${suffix}`;
-            setShadowStr(nextStr);
+            setHiddenStr(nextStr);
             setStepSize(text.length);
             setStatus(STATUS_TYPE.CUT);
         }
@@ -81,19 +94,19 @@ export default ({ text = '', lines = 1, suffix = '...' }: EllipsisProps) => {
      *
      */
     const handleCut = () => {
-        const cutHeight: number = (shadowRef.current as HTMLDivElement).offsetHeight;
+        const cutHeight: number = (hiddenRef.current as HTMLDivElement).offsetHeight;
         if (stepSize <= 1 && cutHeight <= rootHeight) {
             setStatus(STATUS_TYPE.END);
         } else {
             const nextSize: number = Math.ceil(stepSize / 2);
             setStepSize(nextSize);
             const nextLength: number =
-                cutHeight <= rootHeight ? shadowStr.length + nextSize : shadowStr.length - nextSize;
+                cutHeight <= rootHeight ? hiddenStr.length + nextSize : hiddenStr.length - nextSize;
             const nextStr = `${text.substring(0, nextLength - suffix.length)}${suffix}`;
-            if (nextStr === shadowStr) {
+            if (nextStr === hiddenStr) {
                 setStatus(STATUS_TYPE.END);
             } else {
-                setShadowStr(nextStr);
+                setHiddenStr(nextStr);
             }
         }
     };
@@ -103,7 +116,7 @@ export default ({ text = '', lines = 1, suffix = '...' }: EllipsisProps) => {
      *
      */
     const handleEnd = () => {
-        setDisplayStr(shadowStr);
+        endCallback(hiddenStr);
     };
 
     const statusFns: StatusFn = {
@@ -113,34 +126,30 @@ export default ({ text = '', lines = 1, suffix = '...' }: EllipsisProps) => {
         [STATUS_TYPE.END]: handleEnd,
     };
 
-    useEffect(statusFns[status], [status, shadowStr]);
+    useEffect(statusFns[status], [status, hiddenStr]);
 
     return (
-        <div
-            ref={rootRef}
-            style={{
-                position: 'relative',
-                height: rootHeight,
-            }}
-        >
-            <div
-                style={{
-                    position: 'absolute',
-                    wordBreak: 'break-all',
-                }}
-            >
-                {displayStr}
-            </div>
-            <div
-                style={{
-                    position: 'absolute',
-                    visibility: 'hidden',
-                    wordBreak: 'break-all',
-                }}
-                ref={shadowRef}
-            >
-                {shadowStr}
-            </div>
-        </div>
+        <Fragment>
+            {status === STATUS_TYPE.END ? null : (
+                <div
+                    ref={rootRef}
+                    style={{
+                        position: 'relative',
+                        height: rootHeight,
+                    }}
+                >
+                    <div
+                        style={{
+                            position: 'absolute',
+                            visibility: 'hidden',
+                            wordBreak: 'break-all',
+                        }}
+                        ref={hiddenRef}
+                    >
+                        {hiddenStr}
+                    </div>
+                </div>
+            )}
+        </Fragment>
     );
 };

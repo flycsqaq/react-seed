@@ -1,21 +1,17 @@
 /** @format */
 
 import React from 'react';
-import router from '@router/index';
 import { Link } from 'react-router-dom';
 import { Props } from '@typings/prop';
+import routerContainer from '@store/router';
 
-export default ({children}: Props) => {
+export default ({ children }: Props) => {
+    const { router } = routerContainer.useContainer();
     return (
         <div>
             {router.map(item => (
                 <div key={item.key}>
-                    <div>{item.name}</div>
-                    {item.pages.map(it => (
-                        <Link key={it.key} to={it.path}>
-                            {it.name}
-                        </Link>
-                    ))}
+                    <Link to={item.pages[0].path}>{item.name}</Link>
                 </div>
             ))}
             {children}
