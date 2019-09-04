@@ -1,8 +1,7 @@
 /** @format */
 
 import React, { Dispatch, useState } from 'react';
-import Ellipsis from '../ellipsisUi';
-import Tooltip from '@material-ui/core/Tooltip';
+import Ellipsis from '../../../../components/ellipsis/ellipsisUi';
 import Constrant from './constant';
 
 export default () => {

@@ -2,8 +2,6 @@
 
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import toolRouter from '@router/tool';
-import componentRouter from '@router/component';
 import routerContainer from '@store/router';
 
 const key = 'component';

@@ -2,7 +2,7 @@
 
 import React, { Dispatch, useState } from 'react';
 import Constrant from './constant';
-import Ellipsis from '../ellipsisUi';
+import { Ellipsis } from '@components';
 import Tooltip from 'antd/es/tooltip';
 import 'antd/es/tooltip/style';
 

@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { FunctionComponent, Dispatch, useState, Fragment } from 'react';
+import React, { FunctionComponent, Dispatch, useState, Fragment, useEffect } from 'react';
 import Ellipsis from './ellipsis';
 
 interface EllipsisUiProps {
@@ -17,17 +17,15 @@ export default ({ text = '', lines = 1, suffix = '...', Tooltip, ...restProps }:
         ...restProps.style,
         wordBreak: 'break-all',
     };
+    useEffect(() => {
+        setStr('');
+    }, [text, lines, suffix]);
     return (
         <div style={style} {...restProps}>
             <Ellipsis
                 text={text}
                 lines={lines}
                 suffix={suffix}
-                startCallback={(boo: boolean) => {
-                    if (boo) {
-                        setStr('');
-                    }
-                }}
                 endCallback={(str: string) => {
                     setStr(str);
                 }}

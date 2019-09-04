@@ -1,12 +1,11 @@
 /** @format */
 
-import React, { useEffect, useRef, useState, Dispatch, Fragment } from 'react';
+import React, { useEffect, useRef, useState, Dispatch, Fragment, useCallback } from 'react';
 
 interface EllipsisProps {
     text: string;
     lines: number;
     suffix?: string;
-    startCallback?: Function;
     endCallback?: Function;
 }
 
@@ -24,13 +23,7 @@ type StatusFn = {
 /**
  * 如何便于测试?
  */
-export default ({
-    text = '',
-    lines = 1,
-    suffix = '...',
-    startCallback = () => {},
-    endCallback = () => {},
-}: EllipsisProps) => {
+export default ({ text = '', lines = 1, suffix = '...', endCallback = () => {} }: EllipsisProps) => {
     const [realLines, setRealLines]: [number, Dispatch<number>] = useState(0);
     const [lineHeight, setLineHeight]: [number, Dispatch<number>] = useState(20);
 
@@ -44,12 +37,7 @@ export default ({
     const [status, setStatus]: [STATUS_TYPE, Dispatch<STATUS_TYPE>] = useState(STATUS_TYPE.START as STATUS_TYPE);
 
     useEffect(() => {
-        if (status !== STATUS_TYPE.START) {
-            setStatus(STATUS_TYPE.START);
-            startCallback(true);
-            return;
-        }
-        startCallback(false);
+        setStatus(STATUS_TYPE.START);
     }, [text, lines, suffix]);
 
     /**
