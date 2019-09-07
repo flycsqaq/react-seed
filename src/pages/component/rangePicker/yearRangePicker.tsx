@@ -1,79 +1,76 @@
 /** @format */
 
 import React from 'react';
-import { Form, DatePicker, Select } from 'antd';
+import { Select } from 'antd';
 import moment from 'moment';
-import { FormComponentProps } from 'antd/es/form';
+import { range } from '@utils/range';
+import injectPickerStyle from './pickerUi';
 
-const range = (start: number, end: number) => {
-    const arr = [];
-    for (let i = start; i < end; i++) {
-        arr.push(i);
-    }
-    return arr;
+const yearRange = range(2010, moment().year() + 1);
+
+const yearStart = (form: any, passCallback: any) => {
+    const { getFieldDecorator, getFieldsValue } = form;
+
+    return getFieldDecorator('start', {
+        initialValue: yearRange[yearRange.length - 1],
+        rules: [
+            {
+                validator: (r: any, v: any, callback: any) => {
+                    const { start, end } = getFieldsValue();
+                    if (start > end) {
+                        return callback('结束时间无法早于开始时间');
+                    }
+                    callback();
+                    passCallback({
+                        start,
+                        end,
+                    });
+                },
+            },
+        ],
+    })(
+        <Select>
+            {yearRange.map(item => {
+                return (
+                    <Select.Option value={item} key={item}>
+                        {item}
+                    </Select.Option>
+                );
+            })}
+        </Select>,
+    );
 };
 
-const quarterRange = range(0, (moment().year() - 2010) * 4 + moment().quarter()).map(number => {
-    return `${2010 + Math.floor(number / 4)}Q${(number % 4) + 1}`;
-});
-
-export default Form.create()((props: FormComponentProps) => {
-    const { form } = props;
-    const { getFieldDecorator, getFieldsValue, validateFields } = form;
-    return (
-        <Form>
-            <Form.Item>
-                {getFieldDecorator('start', {
-                    initialValue: quarterRange[0],
-                    rules: [
-                        {
-                            validator: (r, v, callback) => {
-                                // const { start, end } = getFieldsValue();
-                                // if (moment.isMoment(start) && moment.isMoment(end)) {
-                                //     if (start.isAfter(end)) {
-                                //         return callback('结束时间无法早于开始时间');
-                                //     }
-                                // }
-                                callback();
-                            },
-                        },
-                    ],
-                })(
-                    <Select>
-                        {quarterRange.map(item => {
-                            return (
-                                <Select.Option value={item} key={item}>
-                                    {item}
-                                </Select.Option>
-                            );
-                        })}
-                    </Select>,
-                )}
-            </Form.Item>
-            至
-            <Form.Item>
-                {getFieldDecorator('end', {
-                    initialValue: quarterRange[quarterRange.length - 1],
-                    rules: [
-                        {
-                            validator: (r, v, callback) => {
-                                // validateFields(['start'], { force: true });
-                                // callback();
-                            },
-                        },
-                    ],
-                })(
-                    <Select>
-                        {quarterRange.map(item => {
-                            return (
-                                <Select.Option value={item} key={item}>
-                                    {item}
-                                </Select.Option>
-                            );
-                        })}
-                    </Select>,
-                )}
-            </Form.Item>
-        </Form>
+const yearEnd = (form: any) => {
+    const { getFieldDecorator, validateFields } = form;
+    return getFieldDecorator('end', {
+        initialValue: yearRange[yearRange.length - 1],
+        rules: [
+            {
+                validator: (r: any, v: any, callback: any) => {
+                    validateFields(['start'], { force: true });
+                    callback();
+                },
+            },
+        ],
+    })(
+        <Select>
+            {yearRange.map(item => {
+                return (
+                    <Select.Option value={item} key={item}>
+                        {item}
+                    </Select.Option>
+                );
+            })}
+        </Select>,
     );
-});
+};
+
+export default (passCallback: any) =>
+    injectPickerStyle(
+        {
+            start: yearStart,
+            end: yearEnd,
+        },
+        passCallback,
+    );

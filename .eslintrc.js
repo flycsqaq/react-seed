@@ -31,5 +31,6 @@ module.exports = {
         eqeqeq: 2,
         'no-with': 2,
         'vars-on-top': 2,
+        'linebreak-style': 2,
     },
 };

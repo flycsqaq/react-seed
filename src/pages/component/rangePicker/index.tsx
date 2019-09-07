@@ -1,20 +1,16 @@
 /** @format */
 
 import React from 'react';
-import DayRangePicker from './dayRangePicker';
-import MonthRangePicker from './monthRangePicker';
-import QuarterRangePicker from './quarterRangePicker';
-import YearRangePicker from './yearRangePicker';
+import RangePicker from './rangePicker';
 
 export default () => {
+    const simpleTest = (obj: any) => {};
     return (
         <div>
-            <DayRangePicker />
-            <MonthRangePicker />
-            <QuarterRangePicker />
-            <YearRangePicker />
-            {/* <RangePicker />
-            <RangePicker /> */}
+            <RangePicker type={'day'} passCallback={simpleTest} />
+            <RangePicker type={'month'} passCallback={simpleTest} />
+            <RangePicker type={'quarter'} passCallback={simpleTest} />
+            <RangePicker type={'year'} passCallback={simpleTest} />
         </div>
     );
 };
