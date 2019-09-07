@@ -1,10 +1,10 @@
 /** @format */
 
 import React from 'react';
-import RangePicker from './rangePicker';
+import { RangePicker } from '@components';
 
 export default () => {
-    const simpleTest = (obj: any) => {};
+    const simpleTest = () => {};
     return (
         <div>
             <RangePicker type={'day'} passCallback={simpleTest} />

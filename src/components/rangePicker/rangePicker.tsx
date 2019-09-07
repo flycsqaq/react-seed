@@ -1,10 +1,10 @@
 /** @format */
 
 import React from 'react';
-import DayRangePicker from './dayRangePicker';
-import MonthRangePicker from './monthRangePicker';
-import QuarterRangePicker from './quarterRangePicker';
-import YearRangePicker from './yearRangePicker';
+import DayRangePicker from './picker/day';
+import MonthRangePicker from './picker/month';
+import QuarterRangePicker from './picker/quarter';
+import YearRangePicker from './picker/year';
 
 const collectionPicker: any = {
     day: DayRangePicker,

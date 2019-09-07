@@ -4,7 +4,7 @@ import React from 'react';
 import { Select } from 'antd';
 import moment from 'moment';
 import { range } from '@utils/range';
-import injectPickerStyle from './pickerUi';
+import injectPickerStyle from '../ui/base';
 
 const quarterRange = range(0, (moment().year() - 2010) * 4 + moment().quarter()).map(number => {
     return `${2010 + Math.floor(number / 4)}Q${(number % 4) + 1}`;

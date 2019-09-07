@@ -3,11 +3,9 @@
 import React from 'react';
 import { DatePicker } from 'antd';
 import moment from 'moment';
-import injectPickerStyle from './pickerUi';
+import injectPickerStyle from '../ui/base';
 
-const { MonthPicker } = DatePicker;
-
-const monthStart = (form: any, passCallback: Function) => {
+const dayStart = (form: any, passCallback: Function) => {
     const { getFieldDecorator, getFieldsValue } = form;
 
     return getFieldDecorator('start', {
@@ -32,10 +30,10 @@ const monthStart = (form: any, passCallback: Function) => {
                 },
             },
         ],
-    })(<MonthPicker />);
+    })(<DatePicker />);
 };
 
-const monthEnd = (form: any) => {
+const dayEnd = (form: any) => {
     const { getFieldDecorator, validateFields } = form;
     return getFieldDecorator('end', {
         initialValue: moment(),
@@ -47,14 +45,14 @@ const monthEnd = (form: any) => {
                 },
             },
         ],
-    })(<MonthPicker />);
+    })(<DatePicker />);
 };
 
 export default (passCallback: Function) =>
     injectPickerStyle(
         {
-            start: monthStart,
-            end: monthEnd,
+            start: dayStart,
+            end: dayEnd,
         },
         passCallback,
     );
