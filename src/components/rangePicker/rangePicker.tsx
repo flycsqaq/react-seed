@@ -5,6 +5,7 @@ import DayRangePicker from './picker/day';
 import MonthRangePicker from './picker/month';
 import QuarterRangePicker from './picker/quarter';
 import YearRangePicker from './picker/year';
+import injectBaseUi from './ui/base';
 
 const collectionPicker: any = {
     day: DayRangePicker,
@@ -14,6 +15,6 @@ const collectionPicker: any = {
 };
 
 export default ({ type = 'day', passCallback = () => {} }: any) => {
-    const Component = collectionPicker[type](passCallback);
+    const Component = injectBaseUi(collectionPicker[type], passCallback);
     return <Component />;
 };

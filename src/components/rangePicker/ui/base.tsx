@@ -9,7 +9,7 @@ const formItemStyle = {
     width: 180,
 };
 
-const injectPickerStyle = ({ start, end }: any, passCallback: any = () => {}) => {
+const injectBaseUi = ({ start, end }: any, passCallback: any = () => {}) => {
     return Form.create()((props: FormComponentProps) => {
         const { form } = props;
         return (
@@ -36,4 +36,4 @@ const injectPickerStyle = ({ start, end }: any, passCallback: any = () => {}) =>
     });
 };
 
-export default injectPickerStyle;
+export default injectBaseUi;

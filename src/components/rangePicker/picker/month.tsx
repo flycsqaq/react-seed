@@ -50,11 +50,7 @@ const monthEnd = (form: any) => {
     })(<MonthPicker />);
 };
 
-export default (passCallback: Function) =>
-    injectPickerStyle(
-        {
-            start: monthStart,
-            end: monthEnd,
-        },
-        passCallback,
-    );
+export default {
+    start: monthStart,
+    end: monthEnd,
+};

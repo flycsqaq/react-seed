@@ -3,7 +3,6 @@
 import React from 'react';
 import { DatePicker } from 'antd';
 import moment from 'moment';
-import injectPickerStyle from '../ui/base';
 
 const dayStart = (form: any, passCallback: Function) => {
     const { getFieldDecorator, getFieldsValue } = form;
@@ -48,11 +47,7 @@ const dayEnd = (form: any) => {
     })(<DatePicker />);
 };
 
-export default (passCallback: Function) =>
-    injectPickerStyle(
-        {
-            start: dayStart,
-            end: dayEnd,
-        },
-        passCallback,
-    );
+export default {
+    start: dayStart,
+    end: dayEnd,
+};

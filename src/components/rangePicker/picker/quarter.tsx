@@ -70,11 +70,7 @@ const quaterEnd = (form: any) => {
     );
 };
 
-export default (passCallback: Function) =>
-    injectPickerStyle(
-        {
-            start: quaterStart,
-            end: quaterEnd,
-        },
-        passCallback,
-    );
+export default {
+    start: quaterStart,
+    end: quaterEnd,
+};

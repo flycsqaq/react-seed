@@ -66,11 +66,7 @@ const yearEnd = (form: any) => {
     );
 };
 
-export default (passCallback: any) =>
-    injectPickerStyle(
-        {
-            start: yearStart,
-            end: yearEnd,
-        },
-        passCallback,
-    );
+export default {
+    start: yearStart,
+    end: yearEnd,
+};
