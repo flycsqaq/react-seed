@@ -16,3 +16,13 @@ export const useMemo = (f: OneParamFunction): OneParamFunction => {
         return memo[x];
     };
 };
+
+export const useMapMemo = (f: OneParamFunction): OneParamFunction => {
+    const memo: Map<Object, Object> = new Map();
+    return x => {
+        if (!memo.get(x)) {
+            memo.set(x, f(x));
+        }
+        return memo.get(x);
+    };
+};
