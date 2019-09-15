@@ -21,7 +21,14 @@ const injectBaseUi = ({ start, end }: any, passCallback: any = () => {}) => {
                 >
                     {start(form, passCallback)}
                 </Form.Item>
-                <span style={{ display: 'inline-block', width: '24px', textAlign: 'center', lineHeight: '40px' }}>
+                <span
+                    style={{
+                        display: 'inline-block',
+                        width: '24px',
+                        textAlign: 'center',
+                        lineHeight: '40px',
+                    }}
+                >
                     -
                 </span>
                 <Form.Item

@@ -1,6 +1,13 @@
 /** @format */
 
-import React, { useEffect, useRef, useState, Dispatch, Fragment, useCallback } from 'react';
+import React, {
+    useEffect,
+    useRef,
+    useState,
+    Dispatch,
+    Fragment,
+    useCallback,
+} from 'react';
 
 interface EllipsisProps {
     text: string;
@@ -23,9 +30,16 @@ type StatusFn = {
 /**
  * 如何便于测试?
  */
-export default ({ text = '', lines = 1, suffix = '...', endCallback = () => {} }: EllipsisProps) => {
+export default ({
+    text = '',
+    lines = 1,
+    suffix = '...',
+    endCallback = () => {},
+}: EllipsisProps) => {
     const [realLines, setRealLines]: [number, Dispatch<number>] = useState(0);
-    const [lineHeight, setLineHeight]: [number, Dispatch<number>] = useState(20);
+    const [lineHeight, setLineHeight]: [number, Dispatch<number>] = useState(
+        20,
+    );
 
     const rootRef = useRef<HTMLDivElement>(null);
     const rootHeight = realLines * lineHeight;
@@ -34,7 +48,9 @@ export default ({ text = '', lines = 1, suffix = '...', endCallback = () => {} }
     const [hiddenStr, setHiddenStr]: [string, Dispatch<string>] = useState('');
     const [stepSize, setStepSize]: [number, Dispatch<number>] = useState(0);
 
-    const [status, setStatus]: [STATUS_TYPE, Dispatch<STATUS_TYPE>] = useState(STATUS_TYPE.START as STATUS_TYPE);
+    const [status, setStatus]: [STATUS_TYPE, Dispatch<STATUS_TYPE>] = useState(
+        STATUS_TYPE.START as STATUS_TYPE,
+    );
 
     useEffect(() => {
         setStatus(STATUS_TYPE.START);
@@ -51,7 +67,11 @@ export default ({ text = '', lines = 1, suffix = '...', endCallback = () => {} }
             setStatus(STATUS_TYPE.END);
         } else {
             setLineHeight(
-                Number.parseInt(getComputedStyle(hiddenRef.current as HTMLDivElement).lineHeight as string, 10),
+                Number.parseInt(
+                    getComputedStyle(hiddenRef.current as HTMLDivElement)
+                        .lineHeight as string,
+                    10,
+                ),
             );
             setRealLines(realLine);
             setStepSize(0);
@@ -65,7 +85,8 @@ export default ({ text = '', lines = 1, suffix = '...', endCallback = () => {} }
      *
      */
     const handleMatch = () => {
-        const matchHeight: number = (hiddenRef.current as HTMLDivElement).offsetHeight;
+        const matchHeight: number = (hiddenRef.current as HTMLDivElement)
+            .offsetHeight;
         if (matchHeight <= rootHeight) {
             setRealLines(Math.ceil(matchHeight / lineHeight));
             setStatus(STATUS_TYPE.END);
@@ -82,15 +103,21 @@ export default ({ text = '', lines = 1, suffix = '...', endCallback = () => {} }
      *
      */
     const handleCut = () => {
-        const cutHeight: number = (hiddenRef.current as HTMLDivElement).offsetHeight;
+        const cutHeight: number = (hiddenRef.current as HTMLDivElement)
+            .offsetHeight;
         if (stepSize <= 1 && cutHeight <= rootHeight) {
             setStatus(STATUS_TYPE.END);
         } else {
             const nextSize: number = Math.ceil(stepSize / 2);
             setStepSize(nextSize);
             const nextLength: number =
-                cutHeight <= rootHeight ? hiddenStr.length + nextSize : hiddenStr.length - nextSize;
-            const nextStr = `${text.substring(0, nextLength - suffix.length)}${suffix}`;
+                cutHeight <= rootHeight
+                    ? hiddenStr.length + nextSize
+                    : hiddenStr.length - nextSize;
+            const nextStr = `${text.substring(
+                0,
+                nextLength - suffix.length,
+            )}${suffix}`;
             if (nextStr === hiddenStr) {
                 setStatus(STATUS_TYPE.END);
             } else {

@@ -13,7 +13,9 @@ const container: Container<any>[] = [routerContainer];
 
 const ProviderContainer = (props: Props) => {
     return container.reduce(
-        (children, Container) => <Container.Provider>{children}</Container.Provider>,
+        (children, Container) => (
+            <Container.Provider>{children}</Container.Provider>
+        ),
         props.children,
     );
 };

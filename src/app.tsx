@@ -18,7 +18,14 @@ const Router = () => {
         <Suspense fallback={<div>loading...</div>}>
             <Switch>
                 {router.map(item =>
-                    item.pages.map(it => <Route key={it.key} exact path={it.path} component={it.component} />),
+                    item.pages.map(it => (
+                        <Route
+                            key={it.key}
+                            exact
+                            path={it.path}
+                            component={it.component}
+                        />
+                    )),
                 )}
                 <Redirect from={'**'} to={'/'} />
             </Switch>

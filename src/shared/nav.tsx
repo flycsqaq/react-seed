@@ -8,7 +8,7 @@ import Fab from '@material-ui/core/Fab';
 
 const rootPathRegex = /^\/[^\/]*/;
 
-export default ({ children, location }: ComponentProps) => {
+export default ({ children, location }: any) => {
     const { router } = routerContainer.useContainer();
     const rootPath = rootPathRegex.exec(location.pathname);
     const compareStr = rootPath === null ? '' : rootPath[0];
@@ -16,8 +16,18 @@ export default ({ children, location }: ComponentProps) => {
     return (
         <div>
             {router.map(item => (
-                <Link key={item.key} style={{ textDecoration: 'none' }} to={item.base}>
-                    <Fab color={compareStr === item.base ? 'primary' : 'secondary'}>{item.name}</Fab>
+                <Link
+                    key={item.key}
+                    style={{ textDecoration: 'none' }}
+                    to={item.base}
+                >
+                    <Fab
+                        color={
+                            compareStr === item.base ? 'primary' : 'secondary'
+                        }
+                    >
+                        {item.name}
+                    </Fab>
                 </Link>
             ))}
             {children}

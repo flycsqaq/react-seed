@@ -27,7 +27,9 @@ const componentRouter: RouterModule = {
             name: 'rangePicker',
             key: 'rangePicker',
             path: '/rangepicker',
-            component: lazy(() => import('../pages/component/rangePicker/index')),
+            component: lazy(() =>
+                import('../pages/component/rangePicker/index'),
+            ),
             isShow: true,
         },
     ],

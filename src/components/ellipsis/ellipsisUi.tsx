@@ -1,7 +1,8 @@
 /** @format */
 
-import React, { FunctionComponent, Dispatch, useState, Fragment, useEffect } from 'react';
+import React, { Dispatch, useState, useEffect } from 'react';
 import Ellipsis from './ellipsis';
+import { handleEllipsis } from '@utils/cutString';
 
 interface EllipsisUiProps {
     text: string;
@@ -11,7 +12,13 @@ interface EllipsisUiProps {
     [x: string]: any;
 }
 
-export default ({ text = '', lines = 1, suffix = '...', Tooltip, ...restProps }: EllipsisUiProps) => {
+export default ({
+    text = '',
+    lines = 1,
+    suffix = '...',
+    Tooltip,
+    ...restProps
+}: EllipsisUiProps) => {
     const [str, setStr]: [string, Dispatch<string>] = useState('');
     const style = {
         ...restProps.style,

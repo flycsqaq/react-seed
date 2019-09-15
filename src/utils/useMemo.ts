@@ -5,7 +5,7 @@ import { ObjectType } from '@typings/object';
 
 /**
  * 记忆函数
- * @param f 
+ * @param f
  */
 export const useMemo = (f: OneParamFunction): OneParamFunction => {
     const memo: ObjectType = {};
