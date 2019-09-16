@@ -1,13 +1,6 @@
 /** @format */
 
-import React, {
-    useEffect,
-    useRef,
-    useState,
-    Dispatch,
-    Fragment,
-    useCallback,
-} from 'react';
+import React, { useEffect, useRef, useState, Dispatch, Fragment } from 'react';
 
 interface EllipsisProps {
     text: string;

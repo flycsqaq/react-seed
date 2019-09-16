@@ -20,7 +20,7 @@ module.exports = [
         use: [
             minicss,
             {
-                loader: 'typings-for-css-modules-loader',
+                loader: 'typings-for-css-modules-loader', // hash
                 options: {
                     modules: true,
                     namedExport: true,

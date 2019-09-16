@@ -11,12 +11,13 @@ module.exports = merge(common, {
     entry: {
         mock: resolve('mock/index.ts'),
     },
+    mode: 'development',
     plugins: [
-        new webpack.NamedModulesPlugin(),
+        // new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
     ],
     devtool: 'inline-source-map',
-    devServer: {
-        contentBase: './dist',
-    },
+    // devServer: {
+    //     contentBase: './dist',
+    // },
 });

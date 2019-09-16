@@ -15,6 +15,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 module.exports = {
     entry: {
         app: resolve('src/index.tsx'),
+        // vendors: resolve('src/vendors.js'), // CommonsChunkPlugin提取vendor引用
     },
     output: {
         path: resolve('dist'),
