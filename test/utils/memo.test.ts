@@ -1,7 +1,6 @@
 /** @format */
 
 import { useMemo } from '@utils/useMemo';
-import { OneParamFunction } from '@typings/function';
 
 test('useMemo', () => {
     const fib = (x: number): number => {
@@ -10,7 +9,7 @@ test('useMemo', () => {
         }
         return fib(x - 2) + fib(x - 1);
     };
-    const fibMemo = useMemo(fib as OneParamFunction);
+    const fibMemo = useMemo(fib);
     expect(fibMemo(1)).toBe(1);
     expect(fibMemo(2)).toBe(1);
     expect(fibMemo(3)).toBe(2);

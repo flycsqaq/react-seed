@@ -1,7 +1,7 @@
 /** @format */
 
 import Mock from 'mockjs';
-import {user} from './mock';
+import { user } from './mock';
 
 const res = () => {
     return user;
