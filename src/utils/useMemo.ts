@@ -1,6 +1,5 @@
 /** @format */
 
-import { OneParamFunction } from '@typings/function';
 import { ObjectType } from '@typings/object';
 
 /**
@@ -9,7 +8,7 @@ import { ObjectType } from '@typings/object';
  */
 export const useMemo = (f: Function): Function => {
     const memo: ObjectType = {};
-    return x => {
+    return (x: string | number) => {
         if (!memo[x]) {
             memo[x] = f(x);
         }
@@ -19,7 +18,7 @@ export const useMemo = (f: Function): Function => {
 
 export const useMapMemo = (f: Function): Function => {
     const memo: Map<Object, Object> = new Map();
-    return x => {
+    return (x: any) => {
         if (!memo.get(x)) {
             memo.set(x, f(x));
         }

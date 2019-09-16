@@ -28,9 +28,10 @@ module.exports = {
         'no-console': 2,
         'no-dupe-keys': 2,
         'no-empty': 2,
-        eqeqeq: 2,
+        "eqeqeq": 2,
         'no-with': 2,
         'vars-on-top': 2,
         'linebreak-style': 2,
+        "@typescript-eslint/explicit-member-accessibility": 0
     },
 };
