@@ -7,7 +7,8 @@
     "*.css"
   ],
   "scripts": {
-    "dev": "webpack-dev-server --config webpack/webpack.dev.js",
+    "dev": "webpack-dev-server --config webpack/webpack.prod.js",
+    "mock-dev": "webpack-dev-server --config webpack/webpack.dev.js",
     "build": "webpack --config webpack/webpack.prod.js",
     "analyz": "cross-env NODE_ENV=production npm_config_report=true npm run build",
     "test": "jest test/"
@@ -56,6 +57,7 @@
     "mockjs": "^1.0.1-beta3",
     "node-sass": "^4.12.0",
     "prettier": "^1.18.2",
+    "react-hot-loader": "^4.12.13",
     "sass-loader": "^7.3.1",
     "terser-webpack-plugin": "^1.4.1",
     "ts-loader": "^6.0.4",

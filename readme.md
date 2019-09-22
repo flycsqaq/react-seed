@@ -35,3 +35,5 @@ css模块化, 将类名转化为hash,同时具有css-loader的效果
 ## 8. file
 
 ## 9. html
+
+## 10. hot

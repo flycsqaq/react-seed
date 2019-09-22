@@ -12,7 +12,6 @@ export default ({ children, location }: any) => {
     const { router } = routerContainer.useContainer();
     const rootPath = rootPathRegex.exec(location.pathname);
     const compareStr = rootPath === null ? '' : rootPath[0];
-    // const activeName = (router.find(item => location.pathname.includes(item.base)) as RouterModule).name;
     return (
         <div>
             {router.map(item => (
