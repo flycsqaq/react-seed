@@ -37,3 +37,6 @@ css模块化, 将类名转化为hash,同时具有css-loader的效果
 ## 9. html
 
 ## 10. hot
+
+## 有没有办法关闭antd-ui的全局css
+将material的主站与antd的二次封装放在不同的入口加载。

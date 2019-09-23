@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ComponentProps } from '@typings/prop';
+import {} from '@typings/prop';
 import routerContainer from '@store/router';
 import Fab from '@material-ui/core/Fab';
 
