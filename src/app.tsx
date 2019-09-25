@@ -4,7 +4,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Switch, HashRouter, Route, Redirect } from 'react-router-dom';
-import 'antd/dist/antd.css';
 import theme from './theme.json';
 import 'typeface-roboto';
 

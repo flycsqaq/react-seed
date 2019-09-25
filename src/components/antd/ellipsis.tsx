@@ -1,8 +1,8 @@
 /** @format */
 
 import React, { Dispatch, useState } from 'react';
-import Constrant from './constant';
-import { Ellipsis } from '@components';
+import Constrant from '../../pages/component/ellipsis/demo/constant';
+import Ellipsis from '@components/ellipsis/ellipsisUi';
 import Tooltip from 'antd/es/tooltip';
 import 'antd/es/tooltip/style';
 

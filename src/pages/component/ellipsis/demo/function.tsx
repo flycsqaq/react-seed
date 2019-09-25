@@ -30,7 +30,6 @@ export default () => {
             >
                 {str}
             </div>
-            <button onClick={() => setLines(lines + 1)}>+</button>
         </div>
     );
 };

@@ -3,7 +3,6 @@
 import React from 'react';
 import { DatePicker } from 'antd';
 import moment from 'moment';
-import injectPickerStyle from '../ui/base';
 
 const { MonthPicker } = DatePicker;
 

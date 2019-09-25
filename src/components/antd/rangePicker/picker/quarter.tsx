@@ -4,7 +4,6 @@ import React from 'react';
 import { Select } from 'antd';
 import moment from 'moment';
 import { range } from '@utils/range';
-import injectPickerStyle from '../ui/base';
 
 const quarterRange = range(
     0,

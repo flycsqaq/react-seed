@@ -2,7 +2,6 @@
 
 import React, { Dispatch, useState, useEffect } from 'react';
 import Ellipsis from './ellipsis';
-import { handleEllipsis } from '@utils/cutString';
 
 interface EllipsisUiProps {
     text: string;

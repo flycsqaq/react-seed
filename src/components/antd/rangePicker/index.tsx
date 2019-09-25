@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react';
-import { RangePicker } from '@components';
+import RangePicker from './rangePicker';
 
 export default () => {
     const simpleTest = () => {};

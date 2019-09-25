@@ -3,7 +3,7 @@
 import React, { Dispatch, useState } from 'react';
 import Constrant from './constant';
 import Tooltip from '@material-ui/core/Tooltip';
-import { Ellipsis } from '@components';
+import { Ellipsis } from '@components/material';
 export default () => {
     const [str, setStr]: [string, Dispatch<string>] = useState(
         Constrant[0].name,

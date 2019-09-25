@@ -23,15 +23,6 @@ const componentRouter: RouterModule = {
             component: lazy(() => import('../pages/component/ellipsis/index')),
             isShow: true,
         },
-        {
-            name: 'rangePicker',
-            key: 'rangePicker',
-            path: '/rangepicker',
-            component: lazy(() =>
-                import('../pages/component/rangePicker/index'),
-            ),
-            isShow: true,
-        },
     ],
 };
 
