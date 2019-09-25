@@ -6,7 +6,7 @@ import { WrappedFormUtils } from 'antd/lib/form/Form';
 
 interface Props {
     // form: WrappedFormUtils;
-    items?: Item[];
+    items: Item[];
     onSave?: Function;
     onCancel?: Function;
     style?: Object;
@@ -20,18 +20,16 @@ export interface Item {
     lable: string;
 }
 
-export default ({
+const RequireForm = ({
     items = [],
     onSave = () => {},
     onCancel = () => {},
     style = {},
 }: Props) => {
     const Component = Form.create()(() => {
+        /* eslint-disable */
         const [values, setValues]: [Item[], Dispatch<Item[]>] = useState(items);
-
-        // useEffect(() => {
-        //     setValues(items);
-        // }, [items]);
+        /** eslint-disable */
 
         const changeValues = (name: string, value: string) => {
             const newValues = values.map(item => {
@@ -116,3 +114,5 @@ export default ({
     });
     return <Component />;
 };
+
+export default RequireForm;

@@ -1,10 +1,10 @@
 /** @format */
 
-import React from 'react';
+import React, { useState } from 'react';
 import RequireForm, { Item } from './requireForm';
 import { useConsole } from '@utils/useConsole';
 
-const demo: Item[] = [
+const demo = () => [
     {
         name: 'username',
         lable: '姓名',
@@ -21,22 +21,22 @@ const demo: Item[] = [
     },
 ];
 
-const onSave = (body: Object) => {
-    return body;
-};
-
-const onCancel = () => {
-    return 'cancel';
-};
-
 export default () => {
-    const onSaveConsole = useConsole(onSave);
-    const onCancelConsole = useConsole(onCancel);
+    const [values, setValues] = useState(demo());
+    const onSave = (obj: any) => {
+        /* eslint-disable */
+        console.log(obj);
+        /* eslint-disable */
+
+    };
+    const onCancel = () => {
+        setValues(demo());
+    };
     return (
         <RequireForm
-            items={demo}
-            onSave={onSaveConsole}
-            onCancel={onCancelConsole}
+            items={values}
+            onSave={onSave}
+            onCancel={onCancel}
             style={{ width: 500 }}
         />
     );
