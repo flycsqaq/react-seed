@@ -2,9 +2,8 @@
 
 import React, { useState } from 'react';
 import RequireForm, { Item } from './requireForm';
-import { useConsole } from '@utils/useConsole';
 
-const demo = () => [
+const demo = (): Item[] => [
     {
         name: 'username',
         lable: '姓名',

@@ -3,7 +3,12 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { hot } from 'react-hot-loader/root';
-import { Ellipsis, RangePicker, RequireForm } from '@components/antd';
+import {
+    Ellipsis,
+    RangePicker,
+    RequireForm,
+    QueryTable,
+} from '@components/antd';
 
 const App = () => {
     return (
@@ -11,6 +16,7 @@ const App = () => {
             <Ellipsis />
             <RangePicker />
             <RequireForm />
+            <QueryTable />
         </Fragment>
     );
 };

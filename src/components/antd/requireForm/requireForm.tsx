@@ -2,22 +2,20 @@
 
 import React, { useState, useEffect, Dispatch } from 'react';
 import { Form, Input, Button } from 'antd';
-import { WrappedFormUtils } from 'antd/lib/form/Form';
 
 interface Props {
-    // form: WrappedFormUtils;
     items: Item[];
-    onSave?: Function;
-    onCancel?: Function;
+    onSave?: Function; // 保存回调
+    onCancel?: Function; // 取消回调
     style?: Object;
 }
 
 export interface Item {
-    name: string;
-    required: boolean;
-    type: string;
-    value: string;
-    lable: string;
+    name: string; // 字段
+    required: boolean; // 是否必填
+    type: string; // input type
+    value: string; // 初始值
+    lable: string; // input label
 }
 
 const RequireForm = ({
@@ -46,7 +44,7 @@ const RequireForm = ({
         return (
             <div style={style}>
                 <Form>
-                    {values.map((item, index) => (
+                    {values.map((item) => (
                         <Form.Item
                             key={item.name}
                             required={item.required}

@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "dev": "webpack-dev-server --config webpack/webpack.dev.js",
-    "antd": "webpack-dev-server --config webpack/webpack.antd.js --port 3000",
+    "antd": "webpack-dev-server --config webpack/webpack.antd.js --port 8888",
     "mock-dev": "webpack-dev-server --config webpack/webpack.dev.js",
     "build": "webpack --config webpack/webpack.prod.js",
     "analyz": "cross-env NODE_ENV=production npm_config_report=true npm run build",
