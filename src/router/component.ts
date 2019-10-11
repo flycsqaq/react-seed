@@ -23,6 +23,13 @@ const componentRouter: RouterModule = {
             component: lazy(() => import('../pages/component/ellipsis/index')),
             isShow: true,
         },
+        {
+            name: 'echarts',
+            key: 'echarts',
+            path: '/echarts',
+            component: lazy(() => import('../pages/component/echarts/index')),
+            isShow: true,
+        },
     ],
 };
 
