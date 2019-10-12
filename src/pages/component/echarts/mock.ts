@@ -20,5 +20,10 @@ export const numasMockData: SatisfationTotal = {
             value: 89.1,
             id: 1,
         },
+        {
+            name: '滴滴大德',
+            value: 89.1,
+            id: 2,
+        },
     ],
 };
