@@ -16,6 +16,13 @@ export const isEqual = (leftObj: any, rightObj: any): boolean => {
         return leftObj === rightObj;
     }
     const leftKeys = Object.keys(leftObj);
+    const rightKeys = Object.keys(rightObj);
+    if (leftKeys.length !== rightKeys.length) {
+        return false;
+    }
+    if (!isEqual(leftKeys, rightKeys)) {
+        return false;
+    }
     return leftKeys.every(key => {
         return isEqual(leftObj[key], rightObj[key]);
     });
